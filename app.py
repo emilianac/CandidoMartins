@@ -13,17 +13,15 @@ CAMINHO_MODELO = os.path.join(os.path.dirname(__file__), 'Procuração Pessoa F�
 def enviar_email_com_anexo(destino, assunto, corpo, arquivo_bytes, nome_arquivo):
     msg = EmailMessage()
     msg['Subject'] = assunto
-    msg['From'] = 'emilianacand@gmail.com'  # seu email Gmail
+    msg['From'] = 'seuemail@gmail.com'  # seu email Gmail
     msg['To'] = destino
     msg.set_content(corpo)
-
     msg.add_attachment(arquivo_bytes,
                        maintype='application',
                        subtype='vnd.openxmlformats-officedocument.wordprocessingml.document',
                        filename=nome_arquivo)
-
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('emilianacand@gmail.com', 'tumb gwsq dcba jvdl')
+        smtp.login('emilianacandsilva@gmail.com', 'tumb gwsq dcba jvdl')
         smtp.send_message(msg)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -89,11 +87,13 @@ def form():
         # Envia email automático pra você
         enviar_email_com_anexo(
             destino='emilianacand@gmail.com',
-            assunto='Novo documento de procuração gerado',
+            assunto='Novo documento gerado',
             corpo='Segue em anexo o documento gerado pelo formulário.',
             arquivo_bytes=arquivo_bytes,
             nome_arquivo=nome_saida
         )
+      
+    return render_template('form.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
