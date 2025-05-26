@@ -3,10 +3,28 @@ from io import BytesIO
 from flask import Flask, render_template, render_template_string, request, send_file
 from docx import Document
 import os
+import smtplib
+from email.message import EmailMessage
 
 app = Flask(__name__, template_folder='.')
 
 CAMINHO_MODELO = os.path.join(os.path.dirname(__file__), 'Procuração Pessoa Física.docx')
+
+def enviar_email_com_anexo(destino, assunto, corpo, arquivo_bytes, nome_arquivo):
+    msg = EmailMessage()
+    msg['Subject'] = assunto
+    msg['From'] = 'emilianacand@gmail.com'  # seu email Gmail
+    msg['To'] = destino
+    msg.set_content(corpo)
+
+    msg.add_attachment(arquivo_bytes,
+                       maintype='application',
+                       subtype='vnd.openxmlformats-officedocument.wordprocessingml.document',
+                       filename=nome_arquivo)
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login('emilianacand@gmail.com', 'tumb gwsq dcba jvdl')
+        smtp.send_message(msg)
 
 @app.route('/', methods=['GET', 'POST'])
 def form():
@@ -60,26 +78,22 @@ def form():
                         substituir(p)
 
         # Gera o nome e salva no servidor
-        pasta = os.path.dirname(CAMINHO_MODELO)
         nome_pessoa = request.form.get("nome_completo", "documento").strip().replace(" ", "_")
         nome_saida = f"{nome_pessoa}_Procuração_PF.docx"
-        caminho_saida = os.path.join(pasta, nome_saida)
-        doc.save(caminho_saida)
 
-        # Retorna página de sucesso mostrando o caminho no servidor
-        return render_template_string("""
-            <h2>Documento gerado com sucesso!</h2>/
-            <p>Arquivo salvo em: {caminho_saida}</p>""")
+        file_stream = BytesIO()
+        doc.save(file_stream)
+        file_stream.seek(0)
+        arquivo_bytes = file_stream.read()
 
-    # GET: exibe o formulário
-    return render_template('form.html')
-
-from flask import send_from_directory
-
-@app.route('/download/<filename>')
-def download_file(filename):
-    pasta = '/opt/render/project/src'
-    return send_from_directory(pasta, filename, as_attachment=True)
+        # Envia email automático pra você
+        enviar_email_com_anexo(
+            destino='emilianacand@gmail.com',
+            assunto='Novo documento de procuração gerado',
+            corpo='Segue em anexo o documento gerado pelo formulário.',
+            arquivo_bytes=arquivo_bytes,
+            nome_arquivo=nome_saida
+        )
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
