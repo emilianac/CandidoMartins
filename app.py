@@ -4,7 +4,7 @@ from flask import Flask, render_template, render_template_string, request, send_
 from docx import Document
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 
 CAMINHO_MODELO = os.path.join(os.path.dirname(__file__), 'Procuração Pessoa Física.docx')
 
