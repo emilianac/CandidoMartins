@@ -4,6 +4,8 @@ from flask import Flask, render_template, render_template_string, request, send_
 from docx import Document
 import os
 
+import upload_onedrive
+
 app = Flask(__name__, template_folder='.')
 
 CAMINHO_MODELO = os.path.join(os.path.dirname(__file__), 'Procuração Pessoa Física.docx')
@@ -60,20 +62,23 @@ def form():
                         substituir(p)
 
         # Gera o nome e salva no servidor
-        pasta = os.path.dirname(CAMINHO_MODELO)
         nome_pessoa = request.form.get("nome_completo", "documento").strip().replace(" ", "_")
         nome_saida = f"{nome_pessoa}_Procuração_PF.docx"
-        caminho_saida = os.path.join(pasta, nome_saida)
-        doc.save(caminho_saida)
 
-        # Retorna página de sucesso mostrando o caminho no servidor
-        return render_template_string("""
-            <h2>Documento gerado com sucesso!</h2>
-            <p>Ele foi salvo em:<br><code>{{ path }}</code></p>
-            <a href="/">Voltar</a>
-        """, path=caminho_saida)
+        file_stream = BytesIO()
+        doc.save(file_stream)
+        file_stream.seek(0)
+        file_content = file_stream.read()
 
-    # GET: exibe o formulário
+        success, info = upload_onedrive.upload_onedrive(file_content, nome_saida)
+
+        if success:
+            return render_template_string(f"""
+                <h2>Documento gerado e enviado ao OneDrive com sucesso!</h2>
+                <p><a href="{info}" target="_blank">Abrir arquivo no OneDrive</a></p>
+            """)
+        
+        
     return render_template('form.html')
 
 if __name__ == '__main__':
