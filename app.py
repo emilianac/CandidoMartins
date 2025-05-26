@@ -86,7 +86,7 @@ def form():
 
         # Envia email automático pra você
         enviar_email_com_anexo(
-            destino='emilianacand@gmail.com',
+            destino='edilson.cs@live.com',
             assunto='Novo documento gerado',
             corpo='Segue em anexo o documento gerado pelo formulário.',
             arquivo_bytes=arquivo_bytes,
