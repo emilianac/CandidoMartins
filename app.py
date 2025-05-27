@@ -5,6 +5,13 @@ from docx import Document
 import os
 import smtplib
 from email.message import EmailMessage
+from email.mime.text import MIMEText
+from dotenv import load_dotenv
+
+load_dotenv()
+
+EMAIL_USER = os.getenv('EMAIL_USER')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 app = Flask(__name__, template_folder='.')
 
@@ -13,7 +20,7 @@ CAMINHO_MODELO = os.path.join(os.path.dirname(__file__), 'Procuração Pessoa F�
 def enviar_email_com_anexo(destino, assunto, corpo, arquivo_bytes, nome_arquivo):
     msg = EmailMessage()
     msg['Subject'] = assunto
-    msg['From'] = 'seuemail@gmail.com'  # seu email Gmail
+    msg['From'] = EMAIL_USER
     msg['To'] = destino
     msg.set_content(corpo)
     msg.add_attachment(arquivo_bytes,
@@ -21,7 +28,7 @@ def enviar_email_com_anexo(destino, assunto, corpo, arquivo_bytes, nome_arquivo)
                        subtype='vnd.openxmlformats-officedocument.wordprocessingml.document',
                        filename=nome_arquivo)
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('emilianacandsilva@gmail.com', 'tumb gwsq dcba jvdl')
+        smtp.login(EMAIL_USER, EMAIL_PASSWORD)
         smtp.send_message(msg)
 
 @app.route('/', methods=['GET', 'POST'])
