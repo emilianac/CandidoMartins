@@ -7,7 +7,7 @@ import smtplib
 from email.message import EmailMessage
 from email.mime.text import MIMEText
 
-app = Flask(__name__, template_folder='.')
+app = Flask(__name__)
 
 CAMINHO_MODELO = os.path.join(os.path.dirname(__file__), 'Procuração Pessoa Física.docx')
 
