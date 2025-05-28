@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Candido&Martins Advogados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-[#0D1825] to-[#1F3044] text-white">
+  <!-- Navbar -->
+   <nav class="flex items-center justify-between px-10 py-6">
+    <div class="text-2xl">
+      <span>Legal</span><span class="italic text-[#caa06d]">Guru</span>
+    </div>
+    <ul class="flex gap-10 text-sm">
+      <li><a href="#" class="hover:text-[#caa06d]">Início</a></li>
+      <li><a href="#" class="hover:text-[#caa06d]">Sobre nós</a></li>
+      <li><a href="#" class="hover:text-[#caa06d]">Áreas de atuação</a></li>
+      <li><a href="#" class="hover:text-[#caa06d]">Localização</a></li>
+      <li><a href="#" class="hover:text-[#caa06d]">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="flex flex-col lg:flex-row items-center justify-between px-10 py-20 font-serif">
+    <!-- Text -->
+    <div class="max-w-xl">
+      <p class="uppercase text-xs tracking-widest text-gray-400 mb-4">
+        Obtenha suporte jurídico
+      </p>
+      <h1 class="text-5xl md:text-6xl leading-snug">
+        Oferecemos os melhores <span class="text-[#caa06d] italic">serviços jurídicos</span>
+      </h1>
+      <p class="mt-6 text-gray-300 text-base leading-relaxed">
+        Vitae auctor eu augue ut lectus arcu. Dictum fusce ut placerat orci nulla pellentesque dignissim enim. Enim nunc faucibus a pellentesque sit amet porttitor eget dolor.
+      </p>
+      <button class="mt-8 bg-[#caa06d] text-white px-6 py-3 rounded hover:bg-[#b88855] transition-colors duration-300 shadow-md">
+        Entrar em contato
+      </button>
+    </div>
+
+    <!-- Image -->
+    <div class="relative mt-10 lg:mt-0 flex flex-col items-center gap-4">
+      <img src="static/img/lady-justice.png" alt="Lady Justice" class="relative z-10 max-h-[550px]" />
+      <img src="static/img/daco.png" alt="Justice Background" class="absolute left-1/2 -translate-x-1/2 -top-24 w-[340px]" />
+    </div>
+  </section>
+
+<!-- Practice Areas Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+      Nossas Áreas de Atuação
+    </h2>
+    <p class="text-gray-500 max-w-2xl mx-auto mb-12">
+      Vitae auctor eu augue ut lectus arcu. Dictum fusce ut placerat orci nulla
+      pellentesque dignissim enim. Enim nunc faucibus a pellentesque sit amet
+      porttitor eget dolor.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Card 1 -->
+      <div class="relative group">
+        <img
+          src="static/img/books.jpg"
+          alt="Books"
+          class="w-full h-80 object-cover rounded-xl group-hover:scale-105 transition"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-xl"></div>
+        <h3 class="absolute bottom-4 left-4 text-xl text-amber-500 font-semibold">
+          Direito Civil
+        </h3>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="relative group">
+        <img
+          src="static/img/criminal.jpg"
+          alt="Gavel"
+          class="w-full h-80 object-cover rounded-xl group-hover:scale-105 transition"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-xl"></div>
+        <h3 class="absolute bottom-4 left-4 text-xl text-amber-500 font-semibold">
+          Direito Criminal
+        </h3>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="relative group">
+        <img
+          src="static/img/lawe.jpg"
+          alt="Judge Hammer"
+          class="w-full h-80 object-cover rounded-xl group-hover:scale-105 transition"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-xl"></div>
+        <h3 class="absolute bottom-4 left-4 text-xl text-amber-500 font-semibold">
+          Direito trabalhista
+        </h3>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="relative group">
+        <img
+          src="static/img/law2.jpg"
+          alt="Law Books"
+          class="w-full h-80 object-cover rounded-xl group-hover:scale-105 transition"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-xl"></div>
+        <h3 class="absolute bottom-4 left-4 text-xl text-amber-500 font-semibold">
+          Direito Empresarial
+        </h3>
+      </div>
+    </div>
+
+    <!-- Navegação -->
+    <div class="flex justify-center gap-4 mt-10">
+      <button
+        class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-full hover:bg-amber-500 hover:text-white transition"
+      >
+        &#8249;
+      </button>
+      <button
+        class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-full hover:bg-amber-500 hover:text-white transition"
+      >
+        &#8250;
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- About Us Section -->
+<section class="px-10 py-20 bg-white text-gray-900">
+    <div class="container mx-auto flex flex-col lg:flex-row items-center gap-10">
+      <div class="max-w-xs lg:max-w-sm">
+        <img src="static/img/lasdy-justice-w.png" alt="Imagem Justiça" class="w-full" />
+      </div>
+      <div class="text-center max-w-xl mx-auto">
+        <h2 class="text-3xl font-serif mb-6">
+          Nós somos defensores de <br />Justiça e Direito
+        </h2>
+        <div class="flex flex-col items-center justify-center">
+        <p class="mb-6 leading-relaxed text-center">
+          Oferecemos atendimento personalizado e soluções jurídicas eficazes para proteger seus direitos e interesses.
+          Nossa equipe de advogados especializados está pronta para atuar com ética, transparência e dedicação, garantindo a você o suporte necessário em cada etapa do seu caso.
+          Conte conosco para defender suas causas, seja no âmbito civil, trabalhista, empresarial ou familiar. Sua tranquilidade é nossa prioridade.
+        </p>
+        <div class="flex gap-10 justify-center">
+        <div class="text-center">
+          <h3 class="text-4xl font-bold">100%</h3>
+          <p>Casos Resolvidos</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-4xl font-bold">50+</h3>
+          <p>Clientes</p>
+        </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="bg-[#0e1621] text-white px-6 py-16 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    <!-- Container da imagem -->
+    <div class="w-full md:w-1/2 relative">
+      <!-- Círculo decorativo -->
+      <div class="absolute -left-16 top-10 w-72 h-72 bg-[#d39865] rounded-full z-0"></div>
+      
+      <!-- Imagem -->
+      <img src="static/img/gavel.jpg" alt="Gavel" class="relative z-10 rounded-lg w-[300px] h-[400px] object-cover">
+    </div>
+
+    <!-- Texto -->
+    <div class="w-full md:w-1/2">
+      <p class="text-sm uppercase tracking-widest text-gray-400 mb-2">
+        Your First Aid
+      </p>
+      <h2 class="text-4xl font-semibold leading-tight mb-4">
+        Let Our Experience <br>
+        <span class="text-[#d39865]">Be Your Guide</span>
+      </h2>
+      <p class="text-gray-300 mb-6">
+        At Judicioworks Advocates and Associates, we bring years of experience across various practice areas, ensuring you receive informed, effective, and personalized legal solutions. Our seasoned team, led by Founder Rishabh Malhotra (Advocate), is dedicated to understanding your unique needs and providing tailored advice and representation. Trust in our experience to navigate the complexities of the legal landscape and advocate fiercely on your behalf.
+      </p>
+      <a href="#"
+         class="bg-[#d39865] text-black px-6 py-3 rounded-md hover:bg-[#b97a4e] transition">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+      Nossa Localização
+    </h2>
+    <p class="text-gray-500 max-w-2xl mx-auto mb-8">
+      Entre em contato para agendar uma visita. Estamos sempre prontos para ajudar.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Endereço -->
+      <div class="flex flex-col justify-center text-left">
+        <h3 class="text-2xl font-semibold text-amber-600 mb-4">Endereço do escritório</h3>
+        <p class="text-lg text-gray-700 mb-4">
+          Rua Rubens Metello, 46, Sala 701<br />
+          Bairro Ibiapaba<br />
+          Barbacena - MG, Brasil<br />
+          CEP: 36200-022
+        </p><p class="text-lg text-gray-700 mb-2">
+          <strong>Telefone:</strong> (32) 99904-1706
+        </p>
+        <p class="text-lg text-gray-700">
+          <strong>Email:</strong> candidoemartins.adv@outlook.com
+        </p>
+      </div>
+      <!-- Mapa -->
+      <div class="w-full h-96">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1859.6587445227105!2d-43.78106846219391!3d-21.219255241721452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa221fbe2e257bd%3A0x5c11d3e8622f85d5!2sR.%20Jos%C3%A9%20P%C3%ADres%20dos%20R%C3%A9is%2C%2046%20-%20Ibiapaba%2C%20Barbacena%20-%20MG%2C%2036200-020!5e0!3m2!1spt-BR!2sbr!4v1748456252978!5m2!1spt-BR!2sbr" 
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="rounded-xl shadow-lg"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+<footer class="bg-[#0D1825] text-white py-6">
+  <div class="container mx-auto text-center">
+    <p class="text-sm">© 2023 Candido&Martins Advogados. Todos os direitos reservados.</p>
+    <p class="text-xs mt-2">Desenvolvido por <a href="#" class="text-[#caa06d] hover:underline">Emiliana Candida</a></p>
+  </div>
+</footer>
+</body>
+
+</html>

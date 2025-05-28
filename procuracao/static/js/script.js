@@ -20,7 +20,7 @@ const estadoCivilSelect = document.getElementById('estado_civil');
 
 generoSelect.addEventListener('change', function () {
 const generoSelecionado = generoSelect.value;
-        // Limpa as opções antigas
+    // Limpa as opções antigas
     estadoCivilSelect.innerHTML = '<option value="" disabled selected>Selecione seu estado civil</option>';
 
     if (opcoesEstadoCivil[generoSelecionado]) {
@@ -96,4 +96,26 @@ const rgInput = document.getElementById('rg');
     if (rg.length > 10) rg = rg.slice(0, 10) + '-' + rg.slice(10, 11);
 
     rgInput.value = rg;
-});
+
+    }
+);
+
+// Setas sessoes
+    const track = document.querySelector('.carousel-track');
+    const prevButton = document.querySelector('.nav-prev');
+    const nextButton = document.querySelector('.nav-next');
+
+    let index = 0;
+    const cardWidth = 270; // 250px + 20px margin
+
+    nextButton.addEventListener('click', () => {
+        index++;
+        if (index > track.children.length - 1) index = 0;
+        track.style.transform = `translateX(${-index * cardWidth}px)`;
+    });
+
+    prevButton.addEventListener('click', () => {
+        index--;
+        if (index < 0) index = track.children.length - 1;
+        track.style.transform = `translateX(${-index * cardWidth}px)`;
+    });
