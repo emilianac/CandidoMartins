@@ -153,7 +153,7 @@ def form():
 
         # Envia email automático pra vocês
         enviar_email_com_anexo(
-            destino='emilianacandsilva@gmail.com',
+            destino='candidoemartins.adv@outlook.com',
             assunto=f"Nova procuração gerada - {nome_pessoa}",
             corpo='Segue em anexo o documento gerado pelo formulário.',
             arquivo_bytes=arquivo_bytes,
