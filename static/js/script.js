@@ -119,3 +119,27 @@ const rgInput = document.getElementById('rg');
         if (index < 0) index = track.children.length - 1;
         track.style.transform = `translateX(${-index * cardWidth}px)`;
     });
+
+// Tipo RG
+function tipoRG() {
+  const tipo = document.getElementById('rg_tipo').value;
+  const campoRG = document.getElementById('campo_rg');
+  const orgEmissor = document.getElementById('org_emissor')
+  const estEmissor = document.getElementById('est_emissor')
+
+  if (tipo === 'rg_antigo') {
+    campoRG.style.display = 'block';
+    orgEmissor.style.display = 'block';
+    estEmissor.style.display = 'block';
+    document.getElementById('num_rg').required = true;
+    document.getElementById('orgao_emissor').required = true;
+    document.getElementById('estado_emissor').required = true;
+  } else {
+    campoRG.style.display = 'none';
+    orgEmissor.style.display = 'none';
+    estEmissor.style.display = 'none';
+    document.getElementById('num_rg').required = false;
+    document.getElementById('orgao_emissor').required = false;
+    document.getElementById('estado_emissor').required = false;
+  }
+}

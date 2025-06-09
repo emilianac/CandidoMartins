@@ -12,6 +12,7 @@ app = Flask(__name__)
 CAMINHO_MODELO = os.path.join(os.path.dirname(__file__), 'Procuração Pessoa Física.docx')
 
 def enviar_email_com_anexo(destino, assunto, corpo, arquivo_bytes, nome_arquivo):
+
     msg = EmailMessage()
     msg['Subject'] = assunto
     msg['From'] = "envioemail.gen@gmail.com"
@@ -52,22 +53,61 @@ def form():
             rg_formatado = f"{rg_raw[:2]}.{rg_raw[2:5]}.{rg_raw[5:8]}-{rg_raw[8]}"
         else:
             rg_formatado = rg_raw
+
+        nome_completo =  request.form.get("nome_completo", "")
+        nome_formatado = " ".join([
+            palavra[0].upper() + palavra[1:].lower() if palavra else ''
+            for palavra in nome_completo.split()
+        ])
+
+        profissao = request.form.get("profissao", "")
+        profissao_formatada = " ".join([
+            palavra[0].upper() + palavra[1:].lower() if palavra else ''
+            for palavra in profissao.split()
+        ])
+
+        cidade_nascimento = request.form.get("cidade_nascimento", "")
+        cidade_formatada = " ".join([
+            palavra[0].upper() + palavra[1:].lower() if palavra else ''
+            for palavra in cidade_nascimento.split()
+        ])
+
+        nome_pai = request.form.get("nome_pai", "")
+        nome_pai_formatado = " ".join([
+            palavra[0].upper() + palavra[1:].lower() if palavra else ''
+            for palavra in nome_pai.split()
+        ])
+
+        nome_mae = request.form.get("nome_pai", "")
+        nome_mae_formatado = " ".join([
+            palavra[0].upper() + palavra[1:].lower() if palavra else ''
+            for palavra in nome_mae.split()
+        ])
             
         # 1) Captura dos dados do formulário
+        tipo_rg = request.form.get("rg_tipo", "")
+        if tipo_rg == "rg_antigo":
+                rg_valor = ", e da Carteira de Identidade Registro Geral n  " + rg_formatado + "/"
+                orgao_emissor_valor = request.form.get("orgao_emissor", "") + "/"
+                estado_emissor_valor = request.form.get("estado_emissor", "")
+        else:
+                rg_valor = ""
+                orgao_emissor_valor = ""
+                estado_emissor_valor = ""
         dados = {
-            "<<NOME>>":                             request.form.get("nome_completo", ""),
+            "<<NOME>>":                             nome_formatado,
             "<<ESTADO CIVIL>>":                     request.form.get("estado_civil", ""),
             "<<NACIONALIDADE>>":                    request.form.get("nacionalidade", ""),
             "<<CPF>>":                              cpf_formatado,
             "<<DATA NASCIMENTO>>":                  data_nascimento_formatada,
-            "<<PROFISSAO>>":                        request.form.get("profissao", ""),
-            "<<CIDADE NASCIMENTO>>":                request.form.get("cidade_nascimento", ""),
+            "<<PROFISSAO>>":                        profissao_formatada,
+            "<<CIDADE NASCIMENTO>>":                cidade_formatada,
             "<<ESTADO NASCIMENTO>>":                request.form.get("estado_nascimento", ""),
-            "<<RG>>":                               rg_formatado,
-            "<<ORGAO EMISSOR>>":                    request.form.get("orgao_emissor", ""),
-            "<<ESTADO EMISSOR>>":                   request.form.get("estado_emissor", ""),
-            "<<NOME PAI>>":                         request.form.get("nome_pai", ""),
-            "<<NOME MAE>>":                         request.form.get("nome_mae", ""),
+            "<<RG>>":                               rg_valor,
+            "<<ORGAO EMISSOR>>":                    orgao_emissor_valor,
+            "<<ESTADO EMISSOR>>":                   estado_emissor_valor,
+            "<<NOME PAI>>":                         nome_pai_formatado,
+            "<<NOME MAE>>":                         nome_mae_formatado,
             "<<CIDADE DOMICILIO>>":                 request.form.get("cidade", ""),
             "<<ESTADO DOMICILIO>>":                 request.form.get("estado", ""),
             "<<LOGRADOURO DOMICILIO>>":             request.form.get("logradouro", ""),
@@ -113,7 +153,7 @@ def form():
 
         # Envia email automático pra vocês
         enviar_email_com_anexo(
-            destino='candidoemartins.adv@outlook.com',
+            destino='emilianacandsilva@gmail.com',
             assunto=f"Nova procuração gerada - {nome_pessoa}",
             corpo='Segue em anexo o documento gerado pelo formulário.',
             arquivo_bytes=arquivo_bytes,
